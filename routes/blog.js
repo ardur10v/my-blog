@@ -6,16 +6,24 @@ const Blog=require('../models/blog')
 const Comment=require('../models/comment')
 const router=Router();
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.resolve(`C:/Users/Hp/OneDrive/Desktop/Blogging App.js/public/images/uploads`))
-  },
-  filename: function (req, file, cb) {
-    const filename=`${Date.now()}-${file.originalname}`
-    cb(null,filename);
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, path.resolve(`C:/Users/Hp/OneDrive/Desktop/Blogging App.js/public/images/uploads`))
+//   },
+//   filename: function (req, file, cb) {
+//     const filename=`${Date.now()}-${file.originalname}`
+//     cb(null,filename);
 
-  }
-})
+//   }
+// })
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, '../public/images/uploads'));
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
 
 const upload = multer({ storage: storage })
 
@@ -31,7 +39,7 @@ router.post('/add-new', upload.single('coverImage'),async(req,res)=>{
         body,
         title,
         createdBy: req.user._id,
-        coverImageUrl:`/uploads/${req.file.filename}`
+        coverImageUrl: req.file.filename
     })
     return res.redirect(`/blog/${blog._id}`);
 })

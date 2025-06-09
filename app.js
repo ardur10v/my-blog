@@ -29,7 +29,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());  
 app.use(cookieParser());
 app.use(checkForAuthCookie('token'));
-app.use(express.static(path.resolve('C:/Users/Hp/OneDrive/Desktop/Blogging App.js/public/images')));
+// app.use(express.static(path.resolve('C:/Users/Hp/OneDrive/Desktop/Blogging App.js/public/images')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/',async(req,res)=>{
     const allBlogs=await Blog.find({}).sort('createdAt');
