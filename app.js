@@ -16,7 +16,10 @@ const app=express()
 
 const PORT=process.env.PORT || 8000
 
-mongoose.connect(process.env.MONGO_URL)
+mongoose.connect(process.env.MONGO_URL,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
 .then(e=>console.log('MongoDb connected'));
 
 app.set("view engine","ejs");
