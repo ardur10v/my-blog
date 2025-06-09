@@ -1,0 +1,40 @@
+<nav id="navbar-example2" class="navbar bg-body-tertiary px-3 mb-3">
+    <a class="navbar-brand" href="#">MyBlog</a>
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link" href="#scrollspyHeading1">Home</a>
+      </li>
+      <% if (locals.user) { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/blog/add-new">Add Blog</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" 
+          data-bs-toggle="dropdown" 
+          href="#" role="button" aria-expanded="false">Rudra Verma</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+            <li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
+          </ul>
+        </li>
+
+      <% } else { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/signup">Create account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/signin">Signin</a>
+        </li>
+       <% } %>
+    </ul>
+  </nav>
+
+  <% if (locals.error) { %>
+    <div class="container mt-4">
+    <div class="alert alert-warning" role="alert"><%= locals.error %></div>
+      </div>
+      
+  <% } %>
+  
