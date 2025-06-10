@@ -55,6 +55,19 @@ router.get('/:id',async(req,res)=>{
     })
 })
 
+router.get('/delete/:id',async(req,res)=>{
+    const blogId=req.params.id;
+    try{
+        await Blog.findByIdAndDelete(blogId);
+        await Comment.deleteMany({blogId});
+        return res.redirect('/');
+    }
+    catch(err){
+        console.error(err);
+        res.status(500).send("Failed to delete blog")
+    }
+})
+
 router.post('/comment/:blogId',async(req,res)=>{
     await Comment.create({
         content: req.body.content,
