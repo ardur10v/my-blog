@@ -21,7 +21,7 @@ const userSchema=new Schema({
     },
     profile:{
         type:String,
-        default:'C:/Users/Hp/OneDrive/Desktop/Blogging App.js/public/images/def.png',
+        default:'/public/profilepics/def.png',
     },
     role:{
         type:String,

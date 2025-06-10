@@ -18,7 +18,7 @@ const router=Router();
 // })
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, '../public/images/uploads'));
+        cb(null, path.join(__dirname, '../public/uploads'));
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + '-' + file.originalname);
@@ -41,6 +41,7 @@ router.post('/add-new', upload.single('coverImage'),async(req,res)=>{
         createdBy: req.user._id,
         coverImageUrl: req.file.filename
     })
+    console.log("Uploaded pic",req.file)
     return res.redirect(`/blog/${blog._id}`);
 })
 
