@@ -11,8 +11,9 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" 
           data-bs-toggle="dropdown" 
-          href="#" role="button" aria-expanded="false"><%= user.name %> </a>
-          <ul class="dropdown-menu">
+          href="#" role="button" aria-expanded="false"
+          style="max-width: 150px;"><%= locals.user.name %> </a>
+          <ul>
             <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
             <li><a class="dropdown-item" href="#scrollspyHeading4">Profile</a></li>
           </ul>

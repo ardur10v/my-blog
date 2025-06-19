@@ -29,6 +29,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());  
 app.use(cookieParser());
 app.use(checkForAuthCookie('token'));
+app.use((req,res,next)=>{
+    res.locals.user=req.user;
+    next()
+})
 // app.use(express.static(path.resolve('C:/Users/Hp/OneDrive/Desktop/Blogging App.js/public/images')));
 app.use(express.static(path.join(__dirname, 'public')));
 
